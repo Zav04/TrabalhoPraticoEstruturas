@@ -2,9 +2,7 @@
 #include "StructFile.h"
 
 //Declarar funções
-int MainFunction();
-struct Job* GetValuesToInsertNewJob();
-void CreateJob();
+
 
 int MainFunction()
 {
@@ -13,14 +11,14 @@ int MainFunction()
 
         printf("\nM E N U\n");
         printf("\nPor favor selecione qual operação pretendida\n");
-        printf("1 - Insercao de um novo cenario \n");
-        printf("2 - Pesquisar um cenario pelo codigo\n");
-        printf("3 - Listagem dos cenarios por ordem crescente\n");
-        printf("4 - Alterar um cenario\n");
-        printf("5 - Remover um cenario\n");
-        printf("6 - Simular um cenario\n");
-        printf("7 - Armazenar os cenarios\n");
-        printf("8 - Carregar os cenarios\n");
+        printf("1 - Insercao de um novo processo \n");
+        printf("2 - Pesquisar um processo pelo codigo\n");
+        printf("3 - Listagem dos processos por ordem crescente\n");
+        printf("4 - Alterar um processo\n");
+        printf("5 - Remover um processo\n");
+        printf("6 - Simular um processo\n");
+        printf("7 - Armazenar os processos\n");
+        printf("8 - Carregar os processos\n");
         printf("O - SAIR\n");
 
         do
@@ -34,54 +32,17 @@ int MainFunction()
 
 }
 
-//struct Job* GetValuesToInsertNewJob()
-//{
-//    struct Job* newjob;
-//    newjob = (struct Job*)malloc(sizeof(struct Job));
-//    int *operation, *machine, *cycletime,MachinesPerOp;
-//
-//    printf("Quantas operações terá?\n");
-//    scanf(" %d", &operation);
-//
-//    for (int i = 0; i < *operation; i++) {
-//        machine = malloc(*operation * sizeof(int));
-//        cycletime = malloc(*operation * sizeof(int));
-//        printf("Quantas máquinas terá a operação %d ?\n", i+1);
-//        scanf("Escreva á frente por favor : %d", &MachinesPerOp);
-//        for (int x = 0; x < MachinesPerOp; x++) {
-//            printf("Qual a máquina associada %d ?\n", i + 1);
-//            scanf("Escreva á frente por favor : %d", &machine[i]);
-//            printf("Qual o tempo de ciclo %d ?\n", i + 1);
-//            scanf("Escreva á frente por favor : %d", &cycletime[i]);
-//        }
-//    }
-//
-//    /* saber quantos "elementos" tem por machine */
-//    //size_t length = sizeof(machine) / sizeof(machine[0]);
-//
-//    //for (int i = 0; i < *machine; i++) {
-//
-//    ////printf("Quantas operações terá?\n");
-//    ////scanf("Escreva á frente por favor :%d", &cycletime);
-//
-//    //}
-//    return newjob;
-//}
 
 void CreateJob()
 {
     struct Job* newjob;
     newjob = (struct Job*)malloc(sizeof(struct Job));
 
-
-   
-
-    int* operation, * machine, * cycletime, MachinesPerOp;
-    int op;
+    int* operation, * machine, * cycletime, getmachines, getcycletime,op;
+    const size_t MachinesPerOp;
 
     printf("Quantas operações terá?\n");
     scanf("%d", &op);
-
     newjob->operation = &op;
 
     for (int i = 0; i < op; i++) {
@@ -90,14 +51,28 @@ void CreateJob()
         cycletime = malloc(*newjob->operation * sizeof(int));
         printf("Quantas máquinas terá a operação %d ?\n", i + 1);
         scanf("%d", &MachinesPerOp);
-
+        //int* arrayexample=(int*)malloc(sizeof(int)* MachinesPerOp);
+        newjob->machine = (int*)malloc(sizeof(int)* MachinesPerOp);//ocupar memoria para o nr de elementos que o utilizador pretende
+        newjob->cycletime = (int*)malloc(sizeof(int) * MachinesPerOp);//ocupar memoria para o nr de elementos que o utilizador pretende
         for (int x = 0; x < MachinesPerOp; x++) {
+
+
             printf("Qual a máquina associada %d ?\n", x + 1);
-            scanf("%d", &newjob->machine[i]);
+            
+            scanf("%d", &getmachines);
+            newjob->machine[x] = getmachines;
+            //arrayexample[x] = getmachines;
+            
             printf("Qual o tempo de ciclo %d ?\n", x + 1);
-            scanf("%d", &newjob->cycletime[i]);
+            scanf("%d", &getcycletime);
+            newjob->cycletime[x] = getcycletime;
 
         }
+        /*
+        for (int x = 0; x < MachinesPerOp; x++) {
+            printf("valor no indice: %d é ======   %d\n",x, newjob->machine[x]);
+        }*/
+        
     }
     if (init == 0)
     {
@@ -112,10 +87,6 @@ void CreateJob()
         newjob->prev = final; // ficar com o valor velho
         init->prev = newjob;// atribuir o proximo valor
         final = newjob; //
-
-
-        //
-
     }
     newjob;
     // breakpoint para entender melhor esta função do azevedo

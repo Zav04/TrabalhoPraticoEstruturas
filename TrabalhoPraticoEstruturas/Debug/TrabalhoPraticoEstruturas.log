@@ -1,0 +1,6 @@
+﻿  TP_Estruturas.c
+C:\Users\João Fernandes\source\repos\TesteTrabalho\TesteTrabalho\TrabalhoPraticoEstruturas\TrabalhoPraticoEstruturas\TrabalhoPraticoEstruturas\TP_Estruturas.c(53,15): warning C4477: 'scanf': a cadeia de formato '%d' requer um argumento do tipo 'int *', mas um argumento variadic 1 tem o tipo 'const size_t *'
+C:\Users\João Fernandes\source\repos\TesteTrabalho\TesteTrabalho\TrabalhoPraticoEstruturas\TrabalhoPraticoEstruturas\TrabalhoPraticoEstruturas\TP_Estruturas.c(57,27): warning C4018: '<': incompatibilidade de signed/unsigned
+C:\Users\João Fernandes\source\repos\TesteTrabalho\TesteTrabalho\TrabalhoPraticoEstruturas\TrabalhoPraticoEstruturas\TrabalhoPraticoEstruturas\TP_Estruturas.c(41,10): warning C4101: 'operation': variável local não referenciada
+C:\Users\João Fernandes\source\repos\TesteTrabalho\TesteTrabalho\TrabalhoPraticoEstruturas\TrabalhoPraticoEstruturas\TrabalhoPraticoEstruturas\TP_Estruturas.c(100,13): warning C4101: 'flag': variável local não referenciada
+  TrabalhoPraticoEstruturas.vcxproj -> C:\Users\João Fernandes\source\repos\TesteTrabalho\TesteTrabalho\TrabalhoPraticoEstruturas\TrabalhoPraticoEstruturas\Debug\TrabalhoPraticoEstruturas.exe
