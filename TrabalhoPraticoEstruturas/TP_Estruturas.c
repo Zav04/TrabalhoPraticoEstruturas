@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "StructFile.h"
+//XPOTTOOOOO
 
 //Declarar funções
 
