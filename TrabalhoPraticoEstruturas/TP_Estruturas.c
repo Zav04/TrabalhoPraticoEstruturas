@@ -33,62 +33,69 @@ int MainFunction()
 }
 
 
-void CreateJob()
+struct Job* CreateJob()
 {
-    struct Job* newjob;
+    struct Job* newjob = NULL;
     newjob = (struct Job*)malloc(sizeof(struct Job));
+    if (newjob != NULL){
+        int* operation, * machine, * cycletime, getmachines, getcycletime,op;
+        const size_t MachinesPerOp;
 
-    int* operation, * machine, * cycletime, getmachines, getcycletime,op;
-    const size_t MachinesPerOp;
+        printf("Quantas operações terá?\n");
+        scanf("%d", &op);
+        newjob->operation = &op;
 
-    printf("Quantas operações terá?\n");
-    scanf("%d", &op);
-    newjob->operation = &op;
+        for (int i = 0; i < op; i++) {
 
-    for (int i = 0; i < op; i++) {
-
-        machine = malloc(*newjob->operation * sizeof(int));
-        cycletime = malloc(*newjob->operation * sizeof(int));
-        printf("Quantas máquinas terá a operação %d ?\n", i + 1);
-        scanf("%d", &MachinesPerOp);
-        //int* arrayexample=(int*)malloc(sizeof(int)* MachinesPerOp);
-        newjob->machine = (int*)malloc(sizeof(int)* MachinesPerOp);//ocupar memoria para o nr de elementos que o utilizador pretende
-        newjob->cycletime = (int*)malloc(sizeof(int) * MachinesPerOp);//ocupar memoria para o nr de elementos que o utilizador pretende
-        for (int x = 0; x < MachinesPerOp; x++) {
+            machine = malloc(*newjob->operation * sizeof(int));
+            cycletime = malloc(*newjob->operation * sizeof(int));
+            printf("Quantas máquinas terá a operação %d ?\n", i + 1);
+            scanf("%d", &MachinesPerOp);
+            //int* arrayexample=(int*)malloc(sizeof(int)* MachinesPerOp);
+            newjob->machine = (int*)malloc(sizeof(int)* MachinesPerOp);//ocupar memoria para o nr de elementos que o utilizador pretende
+            newjob->cycletime = (int*)malloc(sizeof(int) * MachinesPerOp);//ocupar memoria para o nr de elementos que o utilizador pretende
+            for (int x = 0; x < MachinesPerOp; x++) {
 
 
-            printf("Qual a máquina associada %d ?\n", x + 1);
+                printf("Qual a máquina associada %d ?\n", x + 1);
             
-            scanf("%d", &getmachines);
-            newjob->machine[x] = getmachines;
-            //arrayexample[x] = getmachines;
+                scanf("%d", &getmachines);
+                newjob->machine[x] = getmachines;
+                //arrayexample[x] = getmachines;
             
-            printf("Qual o tempo de ciclo %d ?\n", x + 1);
-            scanf("%d", &getcycletime);
-            newjob->cycletime[x] = getcycletime;
+                printf("Qual o tempo de ciclo %d ?\n", x + 1);
+                scanf("%d", &getcycletime);
+                newjob->cycletime[x] = getcycletime;
 
-        }
-        /*
-        for (int x = 0; x < MachinesPerOp; x++) {
-            printf("valor no indice: %d é ======   %d\n",x, newjob->machine[x]);
-        }*/
+            }
+            /*
+            for (int x = 0; x < MachinesPerOp; x++) {
+                printf("valor no indice: %d é ======   %d\n",x, newjob->machine[x]);
+            }*/
         
-    }
-    if (init == 0)
-    {
-        init= final = newjob;
-        init->next = init;
-        init->prev = init;
-        // Atribuir os endereços e guardar no init e no final(porque é a 1 vez)
+        }
+            if (init == 0)
+            {
+                init= final = newjob;
+                init->next = init;
+                init->prev = init;
+                // Atribuir os endereços e guardar no init e no final(porque é a 1 vez)
+            }
+            else {
+
+                final->next = newjob; // atribuir o novo valor
+                newjob->prev = final; // ficar com o valor velho
+                init->prev = newjob;// atribuir o proximo valor
+                final = newjob; //
+            }
+    printf("Processo foi criado com sucesso!\n");
+    return newjob;
     }
     else {
+        printf("Alocação de um novo processo falhou!!\n");
+        return NULL;
 
-        final->next = newjob; // atribuir o novo valor
-        newjob->prev = final; // ficar com o valor velho
-        init->prev = newjob;// atribuir o proximo valor
-        final = newjob; //
     }
-    newjob;
     // breakpoint para entender melhor esta função do azevedo
 }
 
@@ -114,7 +121,11 @@ int main() {
                     //if (flag == 0)
                     //{
                         //struct Job *insertjob = GetValuesToInsertNewJob();
-                        CreateJob();
+                    if (CreateJob() == NULL) {
+                        printf("Não criou novo processo , repetir ? Presse 1 para tal! \n");
+
+                    }
+                        
                     //}
                     //else {
     

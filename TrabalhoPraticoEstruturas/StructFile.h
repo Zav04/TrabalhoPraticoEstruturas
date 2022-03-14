@@ -6,7 +6,7 @@
 #include <math.h>
 #include <conio.h> /*for clrscr()*/
 
-struct Job
+ struct Job
 {
     int *operation; // 01,02,03,04,...
     int *machine; // 1,2,3,4,5,6,7,... // ver como posso sem ter o valor fixo de 100
@@ -16,5 +16,5 @@ struct Job
 }*init, * final;
 
 int MainFunction();
-struct Job* GetValuesToInsertNewJob();
-void CreateJob();
+//struct Job* GetValuesToInsertNewJob();
+struct Job* CreateJob();
